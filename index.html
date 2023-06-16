@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Fixação</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        text-align: center;
+      }
+      .container {
+        display: flex;
+        justify-content: space-around;
+      }
+      .container > div {
+        width: 300px;
+        margin: 10px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+      button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #c615da;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #960ea5;
+      }
+      #resultado1,
+      #resultado2,
+      #resultado3,
+      #resultado4 {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lista de Fixação</h1>
+    <div class="container">
+      <div>
+        <h2>Algoritmo 1</h2>
+        <label for="preco">Preço do produto:</label>
+        <input type="number" id="preco" /><br />
+        <label for="pagamento">Valor pago:</label>
+        <input type="number" id="pagamento" /><br />
+        <button onclick="algoritmo1()">Verificar</button><br />
+        <p id="resultado1">Resultado</p>
+      </div>
+      <div>
+        <h2>Algoritmo 2</h2>
+        <label for="distancia">Distância percorrida (em km):</label>
+        <input type="number" id="distancia" /><br />
+        <label for="litros">Litros gastos:</label>
+        <input type="number" id="litros" /><br />
+        <button onclick="algoritmo2()">Calcular</button><br />
+        <p id="resultado2">Resultado</p>
+      </div>
+      <div>
+        <h2>Algoritmo 3</h2>
+        <label for="numero1">Digite um número inteiro:</label>
+        <input type="number" id="numero1" /><br />
+        <button onclick="algoritmo3()">Contar</button><br />
+        <p id="resultado3">Resultado</p>
+      </div>
+      <div>
+        <h2>Algoritmo 4</h2>
+        <label for="numero2">Digite um número inteiro:</label>
+        <input type="number" id="numero2" /><br />
+        <button onclick="algoritmo4()">Contar</button><br />
+        <p id="resultado4">Resultado</p>
+      </div>
+    </div>
+    <script>
+      function algoritmo1() {
+        var preco = parseFloat(document.getElementById("preco").value);
+        var pagamento = parseFloat(document.getElementById("pagamento").value);
+        var resultado = "";
+        if (pagamento === preco) {
+          resultado = "Valor totalmente pago. Sem troco.";
+        } else if (pagamento > preco) {
+          var troco = pagamento - preco;
+          resultado = "Valor totalmente pago. Troco: " + troco.toFixed(2);
+        } else {
+          var falta = preco - pagamento;
+          resultado = "Valor não pago totalmente. Falta: " + falta.toFixed(2);
+        }
+        document.getElementById("resultado1").innerHTML = resultado;
+      }
+      function algoritmo2() {
+        var distancia = parseFloat(document.getElementById("distancia").value);
+        var litros = parseFloat(document.getElementById("litros").value);
+        var autonomia = distancia / litros;
+        document.getElementById("resultado2").innerHTML =
+          "Autonomia do veículo: " + autonomia.toFixed(2) + " km/l";
+      }
+      function algoritmo3() {
+        var numero = parseInt(document.getElementById("numero1").value);
+        var quantidadePares = 0;
+        for (var i = 0; i <= numero; i++) {
+          if (i % 2 === 0) {
+            quantidadePares++;
+          }
+        }
+        document.getElementById("resultado3").innerHTML =
+          "Quantidade de números pares: " + quantidadePares;
+      }
+      function algoritmo4() {
+        var numero1 = parseInt(document.getElementById("numero2").value);
+        var quantidadePrimos = 0;
+        for (var i = 2; i <= numero1; i++) {
+          if (isPrimo(i)) {
+            quantidadePrimos++;
+          }
+        }
+        document.getElementById("resultado4").innerHTML =
+          "Quantidade de números primos: " + quantidadePrimos;
+      }
+      function isPrimo(numero2) {
+        for (var i = 2; i < numero2; i++) {
+          if (numero2 % i === 0) {
+            return false;
+          }
+        }
+        return numero2 > 1;
+      }
+    </script>
+  </body>
+</html>
